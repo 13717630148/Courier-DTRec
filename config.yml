@@ -1,0 +1,238 @@
+MODE:
+  Ours
+  # MS+mid
+  # MS+unf
+  # MS+smt
+  # MS+deep
+  # MT+mid
+  # MT+unf
+  # MT+smt
+  # MT+deep
+  # DTInf+mid
+  # DTInf+unf
+  # DTInf+smt
+  # DTInf+deep
+  # MetaSTP+mid
+  # MetaSTP+unf
+  # MetaSTP+smt
+  # MetaSTP+deep
+
+Ours:
+  stay_ref: true
+  adr_ref: true
+  coarse: st   # s, t, metastp
+  coarse_post: true  # 处理未匹配的单
+  fine: abm    # mid, unf, smt, deep
+  piter: true  # physics
+  siter: true  # stay range
+  miter: true  # match of stay-order
+
+MS+mid:
+  stay_ref: true
+  adr_ref: true
+  coarse: s
+  coarse_post: false
+  fine: mid
+  piter: false
+  siter: false
+  miter: false
+
+MS+unf:
+  stay_ref: true
+  adr_ref: true
+  coarse: s
+  coarse_post: false
+  fine: unf
+  piter: false
+  siter: false
+  miter: false
+
+MS+smt:
+  stay_ref: true
+  adr_ref: true
+  coarse: s
+  coarse_post: false
+  fine: smt
+  piter: false
+  siter: false
+  miter: false
+
+MS+deep:
+  stay_ref: true
+  adr_ref: true
+  coarse: s
+  coarse_post: false
+  fine: deep
+  piter: false
+  siter: false
+  miter: false
+
+MT+mid:
+  stay_ref: true
+  adr_ref: true
+  coarse: t
+  coarse_post: false
+  fine: mid
+  piter: false
+  siter: false
+  miter: false
+
+MT+unf:
+  stay_ref: true
+  adr_ref: true
+  coarse: t
+  coarse_post: false
+  fine: unf
+  piter: false
+  siter: false
+  miter: false
+
+MT+smt:
+  stay_ref: true
+  adr_ref: true
+  coarse: t
+  coarse_post: false
+  fine: smt
+  piter: false
+  siter: false
+  miter: false
+
+MT+deep:
+  stay_ref: true
+  adr_ref: true
+  coarse: t
+  coarse_post: false
+  fine: deep
+  piter: false
+  siter: false
+  miter: 
+
+DTInf+mid:
+  stay_ref: false
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: mid
+  piter: false
+  siter: false
+  miter: false
+
+DTInf+unf:
+  stay_ref: false
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: unf
+  piter: false
+  siter: false
+  miter: false
+
+DTInf+smt:
+  stay_ref: false
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: smt
+  piter: false
+  siter: false
+  miter: false
+
+DTInf+deep:
+  stay_ref: false
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: deep
+  piter: false
+  siter: false
+  miter: false
+
+MetaSTP+mid:
+  stay_ref: true
+  adr_ref: true
+  coarse: metastp
+  coarse_post: false
+  fine: mid
+  piter: false
+  siter: false
+  miter: false
+
+MetaSTP+unf:
+  stay_ref: true
+  adr_ref: true
+  coarse: metastp
+  coarse_post: false
+  fine: unf
+  piter: false
+  siter: false
+  miter: false
+
+MetaSTP+smt:
+  stay_ref: true
+  adr_ref: true
+  coarse: metastp
+  coarse_post: false
+  fine: smt
+  piter: false
+  siter: false
+  miter: false
+
+MetaSTP+deep:
+  stay_ref: true
+  adr_ref: true
+  coarse: metastp
+  coarse_post: false
+  fine: deep
+  piter: false
+  siter: false
+  miter: false
+
+-StayCor:
+  stay_ref: false
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: abm
+  piter: true
+  siter: true
+  miter: true
+
+-AdrCor:
+  stay_ref: true
+  adr_ref: false
+  coarse: st
+  coarse_post: false
+  fine: abm
+  piter: true
+  siter: true
+  miter: true
+
+-Cor:
+  stay_ref: false
+  adr_ref: false
+  coarse: st
+  coarse_post: false
+  fine: abm
+  piter: true
+  siter: true
+  miter: true
+
+-MatchIter:
+  stay_ref: true
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: abm
+  piter: true
+  siter: true
+  miter: false
+
+-StayIter:
+  stay_ref: true
+  adr_ref: true
+  coarse: st
+  coarse_post: false
+  fine: abm
+  piter: true
+  siter: false
+  miter: true
