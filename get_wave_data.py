@@ -40,6 +40,9 @@ random.seed(233)
 
 
 def cum(ts, for_plot=False):
+    """
+    不知道是啥，貌似是生成时间轴数据
+    """
     num0 = len([t for t in ts if t <= 0])
     t_nums = sorted(list(Counter([t for t in ts if t > 0]).items()), key=lambda x:x[0])
     if for_plot: 
@@ -56,6 +59,9 @@ def cum(ts, for_plot=False):
 
 
 def find_cum_at_t(points, t_target):
+    """
+    不知道是啥
+    """
     if t_target < points[0][0]:
         return 0
     for i, (t, n) in enumerate(points):
@@ -67,9 +73,12 @@ def find_cum_at_t(points, t_target):
 
 
 def get_waves(orders):
+    """
+    貌似是对订单进行波次划分
+    """
     start_times = [o["start_time"] for o in orders if o["type"] == ORDER_DELIVER]
     finish_times = [o["finish_time"] for o in orders]
-    receive_points = cum(start_times)
+    receive_points = cum(start_times)          #时间轴数据
     finish_points = cum(finish_times)
  
     ends = []
@@ -162,6 +171,9 @@ def get_waves(orders):
 
 
 def get_traj_tm_cover(traj):
+    """
+    貌似是将订单数据划分成cover份
+    """
     ts = [p[-1] for p in traj]
     cover = 0
     for t1, t2 in zip(ts, ts[1:]):
@@ -172,26 +184,38 @@ def get_traj_tm_cover(traj):
 
 
 def cal_v(p1, p2):
+    """
+    计算速度
+    """
     (x1, y1, t1), (x2, y2, t2) = p1, p2
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5 / (t2 - t1)
 
 
 def cal_dis(p1, p2):
+    """
+    计算距离
+    """
     (x1, y1), (x2, y2) = p1, p2
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 
 def denoise(traj):
+    """
+    对轨迹去噪。
+    有几种规则：
+    """
     to_remove = []
+    #1.轨迹点是否在区域内
     for i, p in enumerate(traj):
         p = Point(p[:2])
-        for r in regions.values():
+        for r in regions.values():             #regions = pickle.load(open("dataset/regions.pkl", "rb"))
             if p.distance(r["poly"]) < DIS_REGION:
                 break
         else:
             to_remove.append(i)
     traj = [p for i, p in enumerate(traj) if i not in set(to_remove)]
 
+    #2.使用doing in one go的方法，相邻轨迹点的速度不能太大
     noise_idxs = []
     traj_filter = []
     for i, p1 in enumerate(traj):
@@ -218,7 +242,13 @@ def denoise(traj):
 
 
 def get_stay_points(traj, do_ref=True):
+    """
+    寻找驻留点
+    """
     def upscale_traj(traj, sample_gap=5):
+        """
+        上采样轨迹点
+        """
         traj_new = [traj[0]]
         last_x, last_y, last_t = traj[0]
         for x, y, t in traj[1:]:
@@ -381,6 +411,9 @@ def get_stay_points(traj, do_ref=True):
 
 
 def read_wave_data(orig_data, do_ref=True, do_plot=False):
+    """
+    貌似是划分波次的
+    """
     wave_data = []
     fail_waves = 0
     short_wave = 0
